@@ -35,16 +35,31 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Serve Frontend in Production
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // API Routes
 app.use('/api/content', contentRoutes);
 app.use('/api/session', sessionRoutes);
 
-// 404 handler
-app.use((req, res) => {
+// Serve static files from the frontend dist folder
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+// 404 handler for API routes
+app.use('/api/*', (req, res) => {
   res.status(404).json({ 
     error: 'Not Found',
     message: `Route ${req.method} ${req.path} not found`
   });
+});
+
+// Catch-all route to serve the React app for all other requests
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
 // Error handler
