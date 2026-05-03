@@ -27,6 +27,7 @@ FocusRoom is a web application purpose-built for students with ADHD. Instead of 
 
 Powered by **Google Gemini AI** and **BrowserPod**, it doesn't just chunk content — it simplifies language, reads text aloud with word-highlighting, tracks focus decline in real time, generates quizzes for retention, and even runs a built-in AI tutor chat. The whole experience is designed to reduce cognitive overload and deliver learning in a way that actually works for ADHD brains.
 
+Check it live : https://focusroom-zhy6.onrender.com/ 🚀
 ---
 
 ## ✨ Key Features
