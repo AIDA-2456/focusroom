@@ -56,7 +56,12 @@ class BrowserPodService {
         console.error('Response data:', error.response.data);
       }
       
-      throw new Error(`Failed to extract web content: ${error.message}`);
+      console.log('⚠️ Falling back to simpleFetch due to BrowserPod API error...');
+      try {
+        return await this.simpleFetch(url);
+      } catch (fallbackError) {
+        throw new Error(`Failed to extract web content (BrowserPod and Fallback failed): ${error.message}`);
+      }
     }
   }
 

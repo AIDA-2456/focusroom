@@ -105,10 +105,8 @@ router.post('/process', async (req, res) => {
     }
 
     if (content.length > 50000) {
-      return res.status(400).json({ 
-        error: 'Content too large',
-        message: 'Please provide content under 50,000 characters'
-      });
+      console.warn(`Content is too large (${content.length} chars). Truncating to 50,000 characters.`);
+      content = content.slice(0, 50000);
     }
 
     // Optionally simplify before chunking
